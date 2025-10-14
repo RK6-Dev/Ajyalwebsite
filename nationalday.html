@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احتفالات اليوم الوطني السعودي -  حي اجيال السكني بالظهران</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #064e3b 0%, #10b981 50%, #d4af37 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #d4af37;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #d4af37;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            color: #10b981;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .video-title {
+            color: #064e3b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: row-reverse;
+        }
+
+        .video-title::before {
+            content: "🎬";
+            font-size: 1.2em;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border-right: 5px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .info-card h3 {
+            color: #064e3b;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .highlights {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            border: 2px solid #10b981;
+        }
+
+        .highlights h2 {
+            color: #064e3b;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights li {
+            padding: 10px 0;
+            color: #333;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: row-reverse;
+        }
+
+        .highlights li::before {
+            content: "✨";
+            font-size: 1.1em;
+        }
+
+        .highlights li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: #d4af37;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 4px solid #10b981;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            z-index: 100;
+        }
+
+        .scroll-indicator:hover {
+            transform: scale(1.1);
+            background: #10b981;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .video-section {
+                padding: 20px;
+            }
+
+            .scroll-indicator {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🇸🇦 احتفالات اليوم الوطني السعودي</h1>
+        <p class="subtitle"> حي اجيال السكني بالظهران - مشروع فيلم وثائقي</p>
+    </header>
+
+    <div class="container">
+        <div class="video-section">
+            <h2 class="video-title">الفيديو الوثائقي</h2>
+            <div class="video-container" style="padding-bottom: 56.25%;">
+                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;" controls>
+                    <source src="20251014_203106000_iOS.mp4" type="video/mp4">
+                    متصفحك لا يدعم عنصر الفيديو
+                </video>
+            </div>
+            <p style="margin-top: 20px; color: #666; line-height: 1.8;">
+                يسلط هذا الفيلم الوثائقي الضوء على الاستعدادات والاحتفالات النابضة بالحياة ليوم المملكة العربية السعودية الوطني في  حي اجيال السكني بالظهران. 
+    
+            </p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📍 الموقع</h3>
+                <p>حي أجيال، الظهران، المنطقة الشرقية، المملكة العربية السعودية</p>
+            </div>
+            <div class="info-card">
+                <h3>🎉 الفعالية</h3>
+                <p>الاستعدادات والاحتفالات ليوم المملكة - احتفاء بالتراث والفخر الوطني</p>
+            </div>
+            <div class="info-card">
+                <h3>📚 المشروع</h3>
+                <p>مشروع فيلم وثائقي لمادة الحاسب الآلي يعرض المجتمع والثقافة السعودية</p>
+            </div>
+        </div>
+
+        <div class="highlights">
+            <h2>✨ النقاط البارزة</h2>
+            <ul>
+                <li>الديكورات والاستعدادات المجتمعية</li>
+                <li>العناصر الثقافية التقليدية</li>
+                <li>مشاركة السكان والحماس المجتمعي</li>
+                <li>الاحتفاء بالتراث السعودي العريق</li>
+                <li>لقطات وثائقية</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 الفيلم الوثائقي ليوم المملكة | مشروع مادة الحاسب الآلي</p>
+        <p>احتفاءً بتراث وثقافة المملكة العربية السعودية العريقة</p>
+        <p>عمل الطلاب: خالد الزهراني, احمد البسام, فهد الدوسري, عبدالرحمن الشهوان, ليث عبدالقادر, فيصل الورثان</p>
+    </footer>
+
+    <div class="scroll-indicator" onclick="scrollToTop()">↑</div>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 300) {
+                indicator.style.opacity = '1';
+            } else {
+                indicator.style.opacity = '0.5';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
