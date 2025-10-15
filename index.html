@@ -108,13 +108,28 @@
             background: #000;
         }
 
-        .video-container iframe {
+        .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            border-radius: 10px;
+        }
+
+        .debug-info {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: #856404;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .debug-info.show {
+            display: block;
         }
 
         .info-grid {
@@ -253,14 +268,19 @@
     <div class="container">
         <div class="video-section">
             <h2 class="video-title">الفيديو الوثائقي</h2>
-            <div class="video-container" style="padding-bottom: 56.25%;">
-                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;" controls>
-                    <source src="20251014_203106000_iOS.mp4" type="video/mp4">
+            <div class="video-container">
+                <video id="mainVideo" controls preload="metadata" playsinline>
+                    <source src="./video.MP4" type="video/mp4">
+                    <source src="video.MP4" type="video/mp4">
+                    متصفحك لا يدعم عنصر الفيديو
                 </video>
+            </div>
+            <div id="debugInfo" class="debug-info">
+                <strong>معلومات التشخيص:</strong><br>
+                <span id="debugText">جاري فحص الفيديو...</span>
             </div>
             <p style="margin-top: 20px; color: #666; line-height: 1.8;">
                 يسلط هذا الفيلم الوثائقي الضوء على الاستعدادات والاحتفالات النابضة بالحياة ليوم المملكة العربية السعودية الوطني في  حي اجيال السكني بالظهران. 
-    
             </p>
         </div>
 
@@ -300,6 +320,46 @@
     <div class="scroll-indicator" onclick="scrollToTop()">↑</div>
 
     <script>
+        const video = document.getElementById('mainVideo');
+        const debugInfo = document.getElementById('debugInfo');
+        const debugText = document.getElementById('debugText');
+
+        // Show debug info after 2 seconds
+        setTimeout(() => {
+            debugInfo.classList.add('show');
+        }, 2000);
+
+        video.addEventListener('loadedmetadata', function() {
+            debugText.innerHTML = '✅ تم تحميل الفيديو بنجاح!<br>المدة: ' + Math.round(video.duration) + ' ثانية';
+            setTimeout(() => {
+                debugInfo.classList.remove('show');
+            }, 3000);
+        });
+
+        video.addEventListener('error', function(e) {
+            let errorMsg = 'خطأ في تحميل الفيديو: ';
+            switch(video.error.code) {
+                case 1:
+                    errorMsg += 'تم إلغاء التحميل';
+                    break;
+                case 2:
+                    errorMsg += 'خطأ في الشبكة';
+                    break;
+                case 3:
+                    errorMsg += 'فشل فك تشفير الفيديو';
+                    break;
+                case 4:
+                    errorMsg += 'الملف غير موجود أو التنسيق غير مدعوم';
+                    break;
+                default:
+                    errorMsg += 'خطأ غير معروف';
+            }
+            debugText.innerHTML = '❌ ' + errorMsg + '<br>الرجاء التحقق من وجود الملف: video.MP4';
+            debugInfo.style.background = '#f8d7da';
+            debugInfo.style.borderColor = '#f5c6cb';
+            debugInfo.style.color = '#721c24';
+        });
+
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
