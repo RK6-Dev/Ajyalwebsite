@@ -108,24 +108,13 @@
             background: #000;
         }
 
-        .video-container video {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 10px;
-        }
-
-        .error-message {
-            background: #fee;
-            border: 2px solid #fcc;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            color: #c00;
-            display: none;
         }
 
         .info-grid {
@@ -264,18 +253,14 @@
     <div class="container">
         <div class="video-section">
             <h2 class="video-title">الفيديو الوثائقي</h2>
-            <div class="video-container">
-                <video id="mainVideo" controls preload="metadata">
-                    <source src="./20251014_203106000_iOS.mp4" type="video/mp4">
+            <div class="video-container" style="padding-bottom: 56.25%;">
+                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;" controls>
                     <source src="20251014_203106000_iOS.mp4" type="video/mp4">
-                    متصفحك لا يدعم عنصر الفيديو
                 </video>
-            </div>
-            <div class="error-message" id="errorMessage">
-                ⚠️ لا يمكن تحميل الفيديو. يرجى التحقق من أن الملف موجود في المجلد الصحيح.
             </div>
             <p style="margin-top: 20px; color: #666; line-height: 1.8;">
                 يسلط هذا الفيلم الوثائقي الضوء على الاستعدادات والاحتفالات النابضة بالحياة ليوم المملكة العربية السعودية الوطني في  حي اجيال السكني بالظهران. 
+    
             </p>
         </div>
 
@@ -315,19 +300,6 @@
     <div class="scroll-indicator" onclick="scrollToTop()">↑</div>
 
     <script>
-        const video = document.getElementById('mainVideo');
-        const errorMessage = document.getElementById('errorMessage');
-
-        video.addEventListener('error', function(e) {
-            console.error('Video error:', e);
-            errorMessage.style.display = 'block';
-        });
-
-        video.addEventListener('loadeddata', function() {
-            console.log('Video loaded successfully');
-            errorMessage.style.display = 'none';
-        });
-
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
