@@ -19,6 +19,27 @@
             overflow-x: hidden;
         }
 
+        .top-bar {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .top-bar-text {
+            font-size: 1.5em;
+            color: #064e3b;
+            font-weight: bold;
+        }
+
         header {
             background: rgba(0, 0, 0, 0.9);
             padding: 20px;
@@ -236,6 +257,18 @@
         }
 
         @media (max-width: 768px) {
+            .top-bar {
+                padding: 10px 15px;
+            }
+
+            .top-bar img {
+                height: 40px;
+            }
+
+            .top-bar-text {
+                font-size: 1em;
+            }
+
             h1 {
                 font-size: 1.8em;
             }
@@ -260,6 +293,11 @@
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <div class="top-bar-text">قسم التقنية الرقمية</div>
+        <img src="img.JPEG" alt="Logo">
+    </div>
+
     <header>
         <h1>🇸🇦 احتفالات اليوم الوطني السعودي</h1>
         <p class="subtitle"> حي اجيال السكني بالظهران - مشروع فيلم وثائقي</p>
@@ -324,7 +362,6 @@
         const debugInfo = document.getElementById('debugInfo');
         const debugText = document.getElementById('debugText');
 
-        // Show debug info after 2 seconds
         setTimeout(() => {
             debugInfo.classList.add('show');
         }, 2000);
